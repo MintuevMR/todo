@@ -5,6 +5,7 @@ import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from '../item-add-form';
+import NavMenu from '../nav-menu';
 
 import './app.css';
 
@@ -56,9 +57,23 @@ export default class App extends Component {
 
   };
 
+onToggleImportant = (id) => {
+  console.log('Toggle important ' , id);
+}; 
+
+onToggleDone = (id) => {
+  console.log('Toggle done ' , id);
+}; 
+
+
   render() {
     return (
       <div className="todo-app">
+
+        <div>
+        <NavMenu/>
+        </div>
+
         <AppHeader toDo={1} done={3} />
         <div className="top-panel d-flex">
           <SearchPanel />
@@ -67,7 +82,10 @@ export default class App extends Component {
 
         <TodoList
           todos={this.state.todoData}
-          onDeleted={ this.deleteItem }/>
+          onDeleted={ this.deleteItem }
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
+          />
 
         <ItemAddForm onItemAdded={this.addItem}/>
       </div>
