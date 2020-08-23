@@ -1,51 +1,40 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import './todo-list-item.css';
 
 export default class TodoListItem extends Component {
 
-  constructor(){
+  state = {
+    done: false,
+    important: false
+  };
 
-    super();
-      
-    this.state = {
-      done: false,
-      important: false 
-    };
+  onLabelClick = () => {
+    this.setState(({done}) => {
+      return {
+        done: !done
+      };
+    });
+  };
 
-    this.onLabelClick = () => {
-      this.setState( ({done} ) => {
-        return {
-          done: !done  
-        };
-       });
-    };
-
-    this.onLabelDoubleClick =  () => {
-      console.log(`More: ${this.props.label}`)
-    };
-
-    this.onMarkImportant = () => {
-      this.setState((state) => {
-        return {
-          important: !state.important
-        };
-      });
-    };
-  }
+  onMarkImportant = () => {
+    this.setState(({important}) => {
+      return {
+        important: !important
+      };
+    });
+  };
 
   render() {
+    const { label, onDeleted } = this.props;
+    const { done, important } = this.state;
 
-    const {label, onDeleted} = this.props;
-    const {done, important} = this.state;
- 
     let classNames = 'todo-list-item';
-
-    if (done){
+    if (done) {
       classNames += ' done';
     }
 
-    if (important){
+    if (important) {
       classNames += ' important';
     }
 
@@ -53,24 +42,23 @@ export default class TodoListItem extends Component {
       <span className={classNames}>
         <span
           className="todo-list-item-label"
-          onClick={this.onLabelClick}
-          onDoubleClick={this.onLabelDoubleClick}
-          >
+          onClick={ this.onLabelClick }>
           {label}
-        </span> 
-      
-        <button type="button"
-                className="btn btn-outline-danger btn-sm float-right">
-          <i className="fa fa-trash-o" 
-          onClick={onDeleted}/>
-        </button>
+        </span>
+
         <button type="button"
                 className="btn btn-outline-success btn-sm float-right"
-                onClick = {this.onMarkImportant}>
+                onClick={this.onMarkImportant}>
           <i className="fa fa-exclamation" />
         </button>
-  
+
+        <button type="button"
+                className="btn btn-outline-danger btn-sm float-right"
+                onClick={onDeleted}>
+          <i className="fa fa-trash-o" />
+        </button>
       </span>
     );
   };
-  }
+}
+
