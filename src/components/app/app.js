@@ -5,7 +5,10 @@ import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from '../item-add-form';
+<<<<<<< HEAD
 import TodoListExp from '../todo-list-exp';
+=======
+>>>>>>> d73b68015f93721ec2b17b6b1e399652d7d0dd43
 
 import './app.css';
 
@@ -69,6 +72,10 @@ onToggleDone = (id) => {
   render() {
     return (
       <div className="todo-app">
+<<<<<<< HEAD
+=======
+
+>>>>>>> d73b68015f93721ec2b17b6b1e399652d7d0dd43
         <AppHeader toDo={1} done={3} />
         <div className="top-panel d-flex">
           <SearchPanel />
